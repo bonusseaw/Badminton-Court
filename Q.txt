@@ -1,0 +1,5 @@
+SELECT CRT.reserveID,CRT.courtID,CRT.courtName,CRT.timeID,CRT.datere,CRT.timeStart,CRT.timeEnd,members.id,members.name,members.surname,CRT.s FROM `members` JOIN
+(SELECT CR.reserveID,CR.courtID,CR.timeID,CR.datere,CR.s,CR.courtName,CR.id,times.timeStart,times.timeEnd FROM times JOIN
+ (SELECT reservation.reserveID,reservation.courtID,reservation.timeID,reservation.id,reservation.datere,reservation.s,courts.courtName FROM courts JOIN reservation ON courts.courtID = reservation.courtID) AS CR 
+ ON times.timeID = CR.timeID) AS CRT 
+ ON members.id = CRT.id
